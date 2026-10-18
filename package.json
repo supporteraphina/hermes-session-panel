@@ -1,0 +1,13 @@
+{
+  "name": "hermes-session-panel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Hermes Desktop plugin: side panel with the focused chat's agents, environment, context, connectors, outputs and changes.",
+  "scripts": {
+    "build": "esbuild src/plugin.jsx --bundle --format=esm --platform=browser --target=chrome120 --jsx=automatic --jsx-import-source=react --loader:.py=text --external:@hermes/plugin-sdk --external:react --external:react/jsx-runtime --minify --legal-comments=none --banner:js=\"/* Session panel for Hermes Desktop. Source: src/ in this repo. */\" --outfile=session-panel/plugin.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.1"
+  }
+}
