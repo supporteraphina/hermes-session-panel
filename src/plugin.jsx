@@ -16,6 +16,8 @@
 import { Codicon, host, PALETTE_AREA, atom, useQuery, useValue } from '@hermes/plugin-sdk'
 import { useEffect, useState } from 'react'
 
+import { TitlebarIcon } from './titlebar-fix.jsx'
+
 import PANEL_PY from './panel.py'
 
 const ID = 'session-panel'
@@ -552,6 +554,13 @@ function SessionPanel() {
   )
 }
 
+let titlebarReported = false
+function reportTitlebar(info) {
+  if (titlebarReported) return
+  titlebarReported = true
+  breadcrumb('titlebar', info)
+}
+
 export default {
   id: ID,
   name: 'Session panel',
@@ -611,7 +620,11 @@ export default {
       data: {
         id: 'session-panel',
         label: 'Session details',
-        icon: <Codicon className="leading-none" name="list-unordered" size="13.9px" />,
+        icon: (
+          <TitlebarIcon onReport={reportTitlebar}>
+            <Codicon className="leading-none" name="list-unordered" size="13.9px" />
+          </TitlebarIcon>
+        ),
         onSelect: toggle
       }
     })
